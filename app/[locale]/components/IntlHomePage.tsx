@@ -215,7 +215,7 @@ export default function IntlHomePage({ locale }: { locale: Locale }) {
                 <h3 className="text-2xl font-black leading-tight text-stone-900 md:text-3xl">{page.title}</h3>
                 <p className="mt-4 leading-8 text-stone-700">{page.description}</p>
                 <div className="mt-5 space-y-3">
-                  {page.highlights.map((highlight, index) => (
+                  {page.highlights.map((highlight: string, index: number) => (
                     <div key={highlight} className={`rounded-2xl bg-gradient-to-br ${style.card} p-4 shadow-sm ring-1 ring-white/70`}>
                       <div className={`mb-2 inline-flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-r ${style.button} text-sm font-bold text-white`}>
                         {index + 1}
