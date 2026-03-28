@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Locale, getMessages } from "../site-data";
+import { Locale, getMessages } from "../../[locale]/site-data";
 import LocaleSwitcher from "./LocaleSwitcher";
 
 const pageStyles = {

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import LocaleSwitcher from "../components/LocaleSwitcher";
+import LocaleSwitcher from "../../components/i18n/LocaleSwitcher";
 import { getMessages, isSupportedLocale, supportedLocales } from "../site-data";
 import { notFound } from "next/navigation";
 

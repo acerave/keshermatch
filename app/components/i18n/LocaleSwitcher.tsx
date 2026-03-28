@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Locale, supportedLocales } from "../site-data";
+import { Locale, supportedLocales } from "../../[locale]/site-data";
 
 const localeLabels: Record<Locale, string> = {
   en: "English",
