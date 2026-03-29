@@ -12,15 +12,15 @@ export const messages: Record<Locale, any> = {
       earlyAccess: "Early access",
     },
     home: {
-      badge: "International version",
-      title1: "KesherMatch is built",
-      title2: "for different audiences and multiple languages",
-      description:
-        "The .com version starts in English and can later expand to French, Spanish, and more languages.",
-      marketTitle: "Choose the track that fits you",
-      marketDescription:
-        "Use this page to measure interest and send visitors to the landing page that matches them best.",
-    },
+  badge: "International",
+  title1: "Find the right match",
+  title2: "with a smarter, more human approach",
+  description:
+    "KesherMatch combines tradition, family insight, and AI to create more meaningful and accurate connections.",
+  marketTitle: "Choose your path",
+  marketDescription:
+    "Select the experience that fits your lifestyle and values best.",
+},
     tracks: {
       traditional: {
         label: "Traditional",
