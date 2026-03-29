@@ -63,3 +63,11 @@ export default function SecularLandingPage() {
     />
   );
 }
+<section className="mt-20 text-center">
+  <h2 className="text-3xl font-bold">רוצים להתחיל?</h2>
+  <p className="mt-4 text-stone-600">השאירו פרטים ונחזור אליכם עם התאמות ראשונות</p>
+
+  <button className="mt-6 bg-black text-white px-8 py-3 rounded-full">
+    הצטרפות מוקדמת
+  </button>
+</section>

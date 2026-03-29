@@ -77,7 +77,31 @@ export default function HomePage() {
             <SecondaryLink href="/traditional">איך זה עובד</SecondaryLink>
           </div>
         </section>
+<section className="mt-20 rounded-3xl bg-white p-10 shadow-xl">
+  <h2 className="text-3xl font-bold text-center">השאירו פרטים ונחזור אליכם</h2>
 
+  <form className="mt-8 max-w-xl mx-auto space-y-4">
+    <input
+      type="text"
+      placeholder="שם מלא"
+      className="w-full rounded-xl border p-3"
+    />
+    <input
+      type="email"
+      placeholder="אימייל"
+      className="w-full rounded-xl border p-3"
+    />
+    <input
+      type="tel"
+      placeholder="טלפון"
+      className="w-full rounded-xl border p-3"
+    />
+
+    <button className="w-full bg-gradient-to-r from-rose-500 to-orange-400 text-white py-3 rounded-xl font-bold">
+      שליחה
+    </button>
+  </form>
+</section>
         {/* Landing cards */}
         <section className="mt-16 grid gap-8 md:grid-cols-3">
           {landingPages.map((page) => (
