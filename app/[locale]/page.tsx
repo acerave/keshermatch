@@ -1,4 +1,3 @@
-import Link from "next/link";
 import IntlHomePage from "../components/i18n/IntlHomePage";
 import { getMessages, isSupportedLocale, supportedLocales } from "./site-data";
 import { notFound } from "next/navigation";
@@ -7,7 +6,11 @@ export function generateStaticParams() {
   return supportedLocales.map((locale) => ({ locale }));
 }
 
-export default async function LocaleHomePage({ params }: { params: Promise<{ locale: string }> }) {
+export default async function LocaleHomePage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
   const { locale } = await params;
 
   if (!isSupportedLocale(locale)) {
@@ -17,7 +20,11 @@ export default async function LocaleHomePage({ params }: { params: Promise<{ loc
   return <IntlHomePage locale={locale} />;
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
   const { locale } = await params;
   const t = getMessages(locale);
 

@@ -13,8 +13,14 @@ export function KesherAnimatedLogo({
   return (
     <div className="flex items-center gap-3">
       <div className="relative h-16 w-16 shrink-0">
-        <div className="absolute inset-0 rounded-full border-2 border-orange-300/70 animate-[spin_10s_linear_infinite]" />
-        <div className="absolute inset-2 rounded-full border border-rose-300/70 animate-[spin_7s_linear_infinite_reverse]" />
+        <div
+          className="absolute inset-0 rounded-full border-2 border-orange-300/70"
+          style={{ animation: "kmSpin 10s linear infinite" }}
+        />
+        <div
+          className="absolute inset-2 rounded-full border border-rose-300/70"
+          style={{ animation: "kmSpinReverse 7s linear infinite" }}
+        />
         <div className="absolute inset-0 rounded-[1.4rem] bg-gradient-to-br from-rose-500 via-orange-400 to-sky-500 shadow-[0_14px_40px_rgba(251,146,60,0.35)]" />
         <div className="absolute inset-[6px] rounded-[1.1rem] bg-white/20 backdrop-blur-sm" />
 
@@ -32,11 +38,29 @@ export function KesherAnimatedLogo({
           <div className="text-2xl font-black tracking-tight text-stone-900">
             KesherMatch
           </div>
-          <div className="text-sm font-medium text-stone-500">
-            {tagline}
-          </div>
+          <div className="text-sm font-medium text-stone-500">{tagline}</div>
         </div>
       ) : null}
+
+      <style jsx>{`
+        @keyframes kmSpin {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+        }
+
+        @keyframes kmSpinReverse {
+          from {
+            transform: rotate(360deg);
+          }
+          to {
+            transform: rotate(0deg);
+          }
+        }
+      `}</style>
     </div>
   );
 }

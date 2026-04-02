@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Locale, getMessages } from "../../[locale]/site-data";
+import { KesherAnimatedLogo } from "../brand/KesherAnimatedLogo";
 import LocaleSwitcher from "./LocaleSwitcher";
 
 const pageStyles = {
@@ -25,7 +26,10 @@ const pageStyles = {
   },
 } as const;
 
-export function validateIntlLeadForm(values: { fullName?: string; email?: string; track?: string }, locale: Locale) {
+export function validateIntlLeadForm(
+  values: { fullName?: string; email?: string; track?: string },
+  locale: Locale
+) {
   const t = getMessages(locale);
   const fullName = String(values.fullName ?? "").trim();
   const email = String(values.email ?? "").trim();
@@ -48,7 +52,9 @@ export function validateIntlLeadForm(values: { fullName?: string; email?: string
     return { ok: false, message: t.validation.track };
   }
 
-  const trackLabel = t.tracks[track as "traditional" | "secular" | "mixed"].label;
+  const trackLabel =
+    t.tracks[track as "traditional" | "secular" | "mixed"].label;
+
   return {
     ok: true,
     message: t.validation.success
@@ -58,55 +64,21 @@ export function validateIntlLeadForm(values: { fullName?: string; email?: string
   };
 }
 
-export const validationTests = [
-  {
-    name: "valid en lead",
-    input: { fullName: "John Doe", email: "john@example.com", track: "traditional" },
-    locale: "en",
-    expected: { ok: true },
-  },
-  {
-    name: "missing email fr",
-    input: { fullName: "Jean Dupont", email: "", track: "mixed" },
-    locale: "fr",
-    expected: { ok: false, message: "Veuillez saisir votre adresse e-mail." },
-  },
-  {
-    name: "invalid email es",
-    input: { fullName: "Juan Pérez", email: "bad-email", track: "secular" },
-    locale: "es",
-    expected: { ok: false, message: "Por favor ingresa un correo electrónico válido." },
-  },
-];
-
-function BrandLogo({ tagline }: { tagline: string }) {
-  return (
-    <div className="flex items-center gap-3">
-      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-rose-500 via-orange-400 to-sky-500 text-lg font-black text-white shadow-lg">
-        K
-      </div>
-      <div>
-        <div className="text-xl font-extrabold tracking-tight text-stone-900">KesherMatch</div>
-        <div className="text-xs font-medium text-stone-500">{tagline}</div>
-      </div>
-    </div>
-  );
-}
-
-function LeadForm({ locale }: { locale: Locale }) {
+export default function IntlHomePage({ locale }: { locale: Locale }) {
   const t = getMessages(locale);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const form = event.currentTarget;
     const formData = new FormData(form);
+
     const result = validateIntlLeadForm(
       {
         fullName: String(formData.get("fullName") ?? ""),
         email: String(formData.get("email") ?? ""),
         track: String(formData.get("track") ?? ""),
       },
-      locale,
+      locale
     );
 
     if (!result.ok) {
@@ -119,128 +91,189 @@ function LeadForm({ locale }: { locale: Locale }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="mx-auto mt-10 max-w-2xl space-y-4 rounded-[2rem] bg-white p-6 shadow-xl shadow-stone-200 md:p-8">
-      <div>
-        <label htmlFor="track" className="mb-2 block text-sm font-medium text-stone-700">
-          {t.form.preferredTrack}
-        </label>
-        <select
-          id="track"
-          name="track"
-          defaultValue="traditional"
-          className="w-full rounded-2xl border border-stone-300 bg-white px-4 py-3 outline-none transition focus:border-stone-900"
-        >
-          <option value="traditional">{t.form.traditional}</option>
-          <option value="secular">{t.form.secular}</option>
-          <option value="mixed">{t.form.mixed}</option>
-        </select>
-      </div>
-      <div>
-        <label htmlFor="fullName" className="mb-2 block text-sm font-medium text-stone-700">
-          {t.form.fullName}
-        </label>
-        <input
-          id="fullName"
-          name="fullName"
-          type="text"
-          placeholder={t.form.namePlaceholder}
-          className="w-full rounded-2xl border border-stone-300 bg-white px-4 py-3 outline-none transition focus:border-stone-900"
-        />
-      </div>
-      <div>
-        <label htmlFor="email" className="mb-2 block text-sm font-medium text-stone-700">
-          {t.form.email}
-        </label>
-        <input
-          id="email"
-          name="email"
-          type="email"
-          placeholder={t.form.emailPlaceholder}
-          className="w-full rounded-2xl border border-stone-300 bg-white px-4 py-3 outline-none transition focus:border-stone-900"
-        />
-      </div>
-      <button type="submit" className="w-full rounded-full bg-stone-900 px-6 py-3 text-base font-semibold text-white transition hover:opacity-90">
-        {t.form.submit}
-      </button>
-    </form>
-  );
-}
-
-export default function IntlHomePage({ locale }: { locale: Locale }) {
-  const t = getMessages(locale);
-
-  return (
-    <div dir={t.direction} className="min-h-screen bg-gradient-to-b from-stone-50 via-white to-stone-100 text-stone-900">
+    <div
+      dir={t.direction}
+      className="min-h-screen bg-[radial-gradient(circle_at_top_right,_rgba(251,146,60,0.16),_transparent_24%),radial-gradient(circle_at_top_left,_rgba(14,165,233,0.12),_transparent_20%),linear-gradient(to_bottom,_#fffaf7,_#ffffff,_#f8fafc)] text-stone-900"
+    >
       <header className="sticky top-0 z-20 border-b border-white/70 bg-white/80 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-          <BrandLogo tagline={t.brandTagline} />
+          <Link href={`/${locale}`}>
+            <KesherAnimatedLogo tagline="Love. Family. Smart Connection." />
+          </Link>
+
           <div className="flex items-center gap-4">
             <nav className="hidden items-center gap-6 text-sm font-medium lg:flex">
-              <Link href={`/${locale}/traditional`} className="transition hover:text-orange-600">{t.nav.traditional}</Link>
-              <Link href={`/${locale}/secular`} className="transition hover:text-sky-600">{t.nav.secular}</Link>
-              <Link href={`/${locale}/mixed`} className="transition hover:text-rose-600">{t.nav.mixed}</Link>
+              <Link
+                href={`/${locale}/traditional`}
+                className="transition hover:text-orange-600"
+              >
+                {t.nav.traditional}
+              </Link>
+              <Link
+                href={`/${locale}/secular`}
+                className="transition hover:text-sky-600"
+              >
+                {t.nav.secular}
+              </Link>
+              <Link
+                href={`/${locale}/mixed`}
+                className="transition hover:text-rose-600"
+              >
+                {t.nav.mixed}
+              </Link>
             </nav>
+
             <LocaleSwitcher locale={locale} />
           </div>
         </div>
       </header>
 
-      <main className="mx-auto max-w-7xl px-6 py-10 md:py-14">
-        <section className="mb-12 text-center md:mb-16">
-          <div className="mx-auto max-w-4xl">
-            <div className="mb-4 inline-flex rounded-full border border-stone-200 bg-white px-4 py-2 text-sm font-semibold text-stone-700 shadow-sm">
-              {t.home.badge}
+      <main className="mx-auto max-w-7xl px-6 py-10 md:py-16">
+        <section className="relative overflow-hidden rounded-[2.5rem] border border-white/80 bg-gradient-to-br from-rose-100 via-orange-50 to-sky-100 p-8 shadow-[0_24px_70px_rgba(15,23,42,0.10)] md:p-14">
+          <div className="absolute -left-8 top-10 h-48 w-48 rounded-full bg-sky-200/40 blur-3xl" />
+          <div className="absolute bottom-0 right-0 h-56 w-56 rounded-full bg-orange-200/40 blur-3xl" />
+
+          <div className="relative grid gap-10 md:grid-cols-[1.15fr_0.85fr] md:items-center">
+            <div>
+              <div className="mb-4 inline-flex rounded-full border border-white/70 bg-white/80 px-4 py-2 text-sm font-semibold text-stone-700 shadow-sm">
+                {t.home.badge}
+              </div>
+
+              <h1 className="text-5xl font-black leading-[1.03] md:text-7xl">
+                {t.home.title1}
+                <span className="block bg-gradient-to-r from-rose-500 via-orange-500 to-sky-500 bg-clip-text text-transparent">
+                  {t.home.title2}
+                </span>
+              </h1>
+
+              <p className="mt-6 max-w-2xl text-lg leading-8 text-stone-700 md:text-xl">
+                {t.home.description}
+              </p>
+
+              <div className="mt-8 flex flex-wrap gap-4">
+                <button
+                  onClick={() =>
+                    document
+                      .getElementById("lead-form")
+                      ?.scrollIntoView({ behavior: "smooth" })
+                  }
+                  className="rounded-full bg-gradient-to-r from-rose-500 via-orange-400 to-sky-500 px-8 py-4 text-lg font-semibold text-white shadow-[0_14px_40px_rgba(251,146,60,0.3)] transition duration-300 hover:-translate-y-0.5 hover:scale-[1.02]"
+                >
+                  {t.nav.earlyAccess}
+                </button>
+
+                <a
+                  href="#tracks"
+                  className="rounded-full bg-white/90 px-8 py-4 text-lg font-semibold text-stone-900 ring-1 ring-stone-200 shadow-md transition duration-300 hover:-translate-y-0.5 hover:bg-white"
+                >
+                  {t.home.marketTitle}
+                </a>
+              </div>
             </div>
-            <h1 className="text-4xl font-black leading-tight md:text-6xl">
-              {t.home.title1}
-              <span className="block bg-gradient-to-r from-orange-500 via-rose-500 to-sky-500 bg-clip-text text-transparent">
-                {t.home.title2}
-              </span>
-            </h1>
-            <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-stone-600 md:text-xl">
-              {t.home.description}
-            </p>
+
+            <div className="grid gap-4">
+              {(["traditional", "secular", "mixed"] as const).map((key) => {
+                const page = t.tracks[key];
+                const style = pageStyles[key];
+
+                return (
+                  <div
+                    key={key}
+                    className={`group rounded-[1.75rem] bg-gradient-to-br ${style.gradient} p-6 shadow-lg ring-1 ring-white/80 transition duration-300 hover:-translate-y-1 hover:shadow-2xl`}
+                  >
+                    <div
+                      className={`mb-4 inline-flex rounded-full bg-gradient-to-r ${style.button} px-4 py-2 text-sm font-semibold text-white shadow-sm`}
+                    >
+                      {page.badge}
+                    </div>
+
+                    <h3 className="text-xl font-bold text-stone-900">
+                      {page.title}
+                    </h3>
+
+                    <p className="mt-2 leading-8 text-stone-600">
+                      {page.description}
+                    </p>
+
+                    <Link
+                      href={`/${locale}/${style.href}`}
+                      className={`mt-5 inline-flex rounded-full bg-gradient-to-r ${style.button} px-6 py-3 font-semibold text-white shadow-lg transition duration-300 hover:-translate-y-0.5`}
+                    >
+                      {page.button}
+                    </Link>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </section>
 
-        <section className="grid gap-8 md:grid-cols-3">
+        <section id="tracks" className="mt-12 grid gap-6 md:grid-cols-3">
           {(["traditional", "secular", "mixed"] as const).map((key) => {
             const page = t.tracks[key];
-            const style = pageStyles[key];
             return (
-              <div key={key} className={`rounded-[2rem] bg-gradient-to-br ${style.gradient} p-6 shadow-lg shadow-stone-200/50`}>
-                <div className="mb-4 inline-flex rounded-full border border-white/70 bg-white/80 px-4 py-2 text-sm font-semibold text-stone-700 shadow-sm">
-                  {page.badge}
-                </div>
-                <h3 className="text-2xl font-black leading-tight text-stone-900 md:text-3xl">{page.title}</h3>
-                <p className="mt-4 leading-8 text-stone-700">{page.description}</p>
-                <div className="mt-5 space-y-3">
-                  {page.highlights.map((highlight: string, index: number) => (
-                    <div key={highlight} className={`rounded-2xl bg-gradient-to-br ${style.card} p-4 shadow-sm ring-1 ring-white/70`}>
-                      <div className={`mb-2 inline-flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-r ${style.button} text-sm font-bold text-white`}>
-                        {index + 1}
-                      </div>
-                      <p className="font-medium text-stone-800">{highlight}</p>
-                    </div>
-                  ))}
-                </div>
-                <Link
-                  href={`/${locale}/${style.href}`}
-                  className={`mt-6 inline-flex rounded-full bg-gradient-to-r ${style.button} px-6 py-3 text-base font-semibold text-white shadow-lg transition hover:opacity-95`}
-                >
-                  {page.button}
-                </Link>
+              <div
+                key={key}
+                className="rounded-[1.75rem] border border-white/80 bg-white/85 p-6 shadow-lg"
+              >
+                <h3 className="text-xl font-bold text-stone-900">
+                  {page.label}
+                </h3>
+                <p className="mt-3 leading-8 text-stone-600">
+                  {page.description}
+                </p>
               </div>
             );
           })}
         </section>
 
-        <section id="lead-form" className="py-20">
-          <div className="mx-auto max-w-4xl text-center">
-            <h2 className="text-3xl font-black md:text-5xl">{t.home.marketTitle}</h2>
-            <p className="mt-4 text-lg leading-8 text-stone-600">{t.home.marketDescription}</p>
-          </div>
-          <LeadForm locale={locale} />
+        <section
+          id="lead-form"
+          className="mt-12 rounded-[2rem] border border-white/80 bg-white/85 p-8 shadow-lg"
+        >
+          <h2 className="text-2xl font-black text-stone-900 md:text-3xl">
+            {t.home.marketTitle}
+          </h2>
+
+          <p className="mt-3 max-w-2xl leading-8 text-stone-600">
+            {t.home.marketDescription}
+          </p>
+
+          <form
+            onSubmit={handleSubmit}
+            className="mt-6 grid gap-4 md:grid-cols-3"
+          >
+            <select
+              name="track"
+              defaultValue="traditional"
+              className="rounded-2xl border border-stone-200 bg-white px-4 py-3 outline-none transition focus:border-rose-400"
+            >
+              <option value="traditional">{t.form.traditional}</option>
+              <option value="secular">{t.form.secular}</option>
+              <option value="mixed">{t.form.mixed}</option>
+            </select>
+
+            <input
+              name="fullName"
+              type="text"
+              placeholder={t.form.namePlaceholder}
+              className="rounded-2xl border border-stone-200 bg-white px-4 py-3 outline-none transition focus:border-orange-400"
+            />
+
+            <input
+              name="email"
+              type="email"
+              placeholder={t.form.emailPlaceholder}
+              className="rounded-2xl border border-stone-200 bg-white px-4 py-3 outline-none transition focus:border-sky-400"
+            />
+
+            <button
+              type="submit"
+              className="md:col-span-3 rounded-2xl bg-gradient-to-r from-rose-500 via-orange-400 to-sky-500 px-6 py-3 font-semibold text-white shadow-[0_14px_40px_rgba(251,146,60,0.25)] transition duration-300 hover:-translate-y-0.5 hover:scale-[1.01]"
+            >
+              {t.form.submit}
+            </button>
+          </form>
         </section>
       </main>
     </div>
