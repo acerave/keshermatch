@@ -1,54 +1,19 @@
 "use client";
 
 import Link from "next/link";
-import { Globe, HeartHandshake, Home, Sparkles, Users, Wand2 } from "lucide-react";
+import { Heart, Users, Sparkles } from "lucide-react";
 import { KesherAnimatedLogo } from "./components/brand/KesherAnimatedLogo";
-import FeatureCard from "./components/brand/FeatureCard";
-import PrimaryButton from "./components/brand/PrimaryButton";
-import SecondaryLink from "./components/brand/SecondaryLink";
-
-const landingPages = [
-  {
-    href: "/traditional",
-    label: "מסורתיים",
-    badge: "מסלול מסורתי",
-    title: "שידוכים עם כבוד למסורת, למשפחה וללב",
-    description:
-      "חוויית נחיתה חמה, רכה ומשפחתית יותר — לקהל מסורתי שמחפש התאמה מודרנית בלי לאבד את הערכים.",
-    gradient: "from-amber-50 via-orange-50 to-rose-50",
-    accent: "from-orange-500 to-rose-500",
-  },
-  {
-    href: "/secular",
-    label: "חילוניים",
-    badge: "מסלול חילוני",
-    title: "חוויית היכרות חכמה, פתוחה ומדויקת יותר",
-    description:
-      "גישה נקייה ומודרנית יותר, שמעמידה את הפרט במרכז עם פרטיות ושליטה.",
-    gradient: "from-sky-50 via-white to-violet-50",
-    accent: "from-sky-500 to-violet-500",
-  },
-  {
-    href: "/mixed",
-    label: "מעורב",
-    badge: "מסלול מעורב",
-    title: "מקום שמחבר בין עולמות שונים בגישה רגישה",
-    description:
-      "מסלול גמיש שמכבד מורכבות ופתיחות — בלי להכניס אנשים לקופסה.",
-    gradient: "from-rose-50 via-white to-sky-50",
-    accent: "from-rose-500 via-orange-400 to-sky-500",
-  },
-];
 
 export default function HomePage() {
   return (
-    <div dir="rtl" className="min-h-screen bg-gradient-to-b from-stone-50 via-white to-stone-100 text-stone-900">
+    <div dir="rtl" className="min-h-screen bg-gradient-to-b from-white to-gray-100 text-gray-900">
 
-      {/* Header */}
-      <header className="sticky top-0 z-30 border-b border-white/70 bg-white/80 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+      {/* HEADER */}
+      <header className="sticky top-0 bg-white/80 backdrop-blur border-b z-20">
+        <div className="max-w-7xl mx-auto flex justify-between items-center p-4">
           <KesherAnimatedLogo tagline="מסורת, משפחה, התאמה חכמה" />
-          <nav className="hidden md:flex gap-6 text-sm font-medium">
+
+          <nav className="hidden md:flex gap-6">
             <Link href="/traditional">מסורתיים</Link>
             <Link href="/secular">חילוניים</Link>
             <Link href="/mixed">מעורב</Link>
@@ -56,77 +21,88 @@ export default function HomePage() {
         </div>
       </header>
 
-      <main className="mx-auto max-w-7xl px-6 py-10 md:py-16">
+      <main className="max-w-7xl mx-auto p-6">
 
-        {/* Hero */}
-        <section className="rounded-[3rem] bg-gradient-to-br from-rose-100 via-orange-50 to-sky-100 p-10 md:p-16 shadow-xl">
-          <h1 className="text-5xl font-black md:text-7xl leading-tight">
-            למצוא את
-            <span className="block bg-gradient-to-r from-rose-500 via-orange-500 to-sky-500 bg-clip-text text-transparent">
-              החיבור הנכון
-            </span>
-            בדרך חדשה
-          </h1>
+        {/* HERO */}
+        <section className="grid md:grid-cols-2 gap-10 items-center py-16">
+          <div>
+            <h1 className="text-5xl font-black leading-tight">
+              למצוא את
+              <span className="block bg-gradient-to-r from-rose-500 via-orange-500 to-sky-500 text-transparent bg-clip-text">
+                החיבור הנכון
+              </span>
+              בדרך חדשה
+            </h1>
 
-          <p className="mt-6 text-lg text-stone-700 max-w-2xl">
-            שילוב בין שדכנות מסורתית לבין בינה מלאכותית — ליצירת התאמות מדויקות יותר.
-          </p>
+            <p className="mt-6 text-lg text-gray-600">
+              שילוב בין שדכנות מסורתית לבין בינה מלאכותית ליצירת התאמות מדויקות יותר.
+            </p>
 
-          <div className="mt-8 flex gap-4">
-            <PrimaryButton>הצטרפות מוקדמת</PrimaryButton>
-            <SecondaryLink href="/traditional">איך זה עובד</SecondaryLink>
+            <div className="mt-8 flex gap-4">
+              <button className="bg-gradient-to-r from-rose-500 to-orange-400 text-white px-8 py-4 rounded-full text-lg font-bold shadow-xl hover:scale-105 transition">
+                הצטרפות מוקדמת
+              </button>
+
+              <a href="#tracks" className="px-8 py-4 rounded-full bg-white shadow border">
+                לראות מסלולים
+              </a>
+            </div>
+          </div>
+
+          {/* VISUAL */}
+          <div className="relative">
+            <div className="w-full h-80 bg-gradient-to-br from-rose-200 via-orange-100 to-sky-200 rounded-3xl shadow-2xl flex items-center justify-center">
+              <Sparkles className="w-16 h-16 text-white animate-pulse" />
+            </div>
           </div>
         </section>
-<section className="mt-20 rounded-3xl bg-white p-10 shadow-xl">
-  <h2 className="text-3xl font-bold text-center">השאירו פרטים ונחזור אליכם</h2>
 
-  <form className="mt-8 max-w-xl mx-auto space-y-4">
-    <input
-      type="text"
-      placeholder="שם מלא"
-      className="w-full rounded-xl border p-3"
-    />
-    <input
-      type="email"
-      placeholder="אימייל"
-      className="w-full rounded-xl border p-3"
-    />
-    <input
-      type="tel"
-      placeholder="טלפון"
-      className="w-full rounded-xl border p-3"
-    />
+        {/* FEATURES */}
+        <section className="grid md:grid-cols-3 gap-6 mt-20">
+          {[
+            { icon: Heart, title: "רגש", text: "התאמות עמוקות יותר" },
+            { icon: Users, title: "משפחה", text: "מעורבות הורית חכמה" },
+            { icon: Sparkles, title: "חדשנות", text: "AI מתקדם" },
+          ].map((item) => {
+            const Icon = item.icon;
+            return (
+              <div key={item.title} className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition">
+                <Icon className="w-8 h-8 text-rose-500 mb-4" />
+                <h3 className="font-bold text-xl">{item.title}</h3>
+                <p className="text-gray-600 mt-2">{item.text}</p>
+              </div>
+            );
+          })}
+        </section>
 
-    <button className="w-full bg-gradient-to-r from-rose-500 to-orange-400 text-white py-3 rounded-xl font-bold">
-      שליחה
-    </button>
-  </form>
-</section>
-        {/* Landing cards */}
-        <section className="mt-16 grid gap-8 md:grid-cols-3">
-          {landingPages.map((page) => (
-            <div
-              key={page.href}
-              className={`rounded-2xl bg-gradient-to-br ${page.gradient} p-6 shadow-lg hover:shadow-2xl transition`}
-            >
-              <h3 className="text-xl font-bold">{page.title}</h3>
-              <p className="mt-3 text-stone-700">{page.description}</p>
-
-              <Link
-                href={page.href}
-                className={`mt-6 inline-block rounded-full bg-gradient-to-r ${page.accent} px-6 py-3 text-white font-semibold`}
-              >
-                לעמוד {page.label}
-              </Link>
-            </div>
+        {/* TRACKS */}
+        <section id="tracks" className="mt-24 grid md:grid-cols-3 gap-6">
+          {[
+            { name: "מסורתי", link: "/traditional" },
+            { name: "חילוני", link: "/secular" },
+            { name: "מעורב", link: "/mixed" },
+          ].map((t) => (
+            <Link key={t.name} href={t.link}>
+              <div className="p-8 bg-gradient-to-br from-white to-gray-100 rounded-2xl shadow-lg hover:scale-105 transition cursor-pointer">
+                <h3 className="text-2xl font-bold">{t.name}</h3>
+              </div>
+            </Link>
           ))}
         </section>
 
-        {/* Features */}
-        <section className="mt-20 grid md:grid-cols-3 gap-6">
-          <FeatureCard icon={Home} title="בית" text="חוויה חמה ואמינה" />
-          <FeatureCard icon={Users} title="אנשים" text="התאמה לפי ערכים" />
-          <FeatureCard icon={Globe} title="עולם" text="תמיכה בינלאומית" />
+        {/* SIGNUP */}
+        <section className="mt-24 bg-white p-10 rounded-3xl shadow-xl">
+          <h2 className="text-3xl font-bold text-center">השאירו פרטים</h2>
+
+          <form className="mt-8 max-w-xl mx-auto space-y-4">
+            <input placeholder="שם" className="w-full p-3 border rounded-xl" />
+            <input placeholder="אימייל" className="w-full p-3 border rounded-xl" />
+            <input placeholder="טלפון" className="w-full p-3 border rounded-xl" />
+
+            <button className="w-full bg-black text-white py-3 rounded-xl">
+              שליחה
+            </button>
+          </form>
         </section>
 
       </main>
