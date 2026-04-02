@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Globe, HeartHandshake, Home, Sparkles, Users, Wand2 } from "lucide-react";
-import KesherLogo from "./components/brand/KesherLogo";
+import { KesherAnimatedLogo } from "./components/brand/KesherAnimatedLogo";
 import FeatureCard from "./components/brand/FeatureCard";
 import PrimaryButton from "./components/brand/PrimaryButton";
 import SecondaryLink from "./components/brand/SecondaryLink";
@@ -47,7 +47,7 @@ export default function HomePage() {
       {/* Header */}
       <header className="sticky top-0 z-30 border-b border-white/70 bg-white/80 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-          <KesherLogo tagline="מסורת, משפחה, התאמה חכמה" />
+          <KesherAnimatedLogo tagline="מסורת, משפחה, התאמה חכמה" />
           <nav className="hidden md:flex gap-6 text-sm font-medium">
             <Link href="/traditional">מסורתיים</Link>
             <Link href="/secular">חילוניים</Link>

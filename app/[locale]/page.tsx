@@ -1,3 +1,4 @@
+import Link from "next/link";
 import IntlHomePage from "../components/i18n/IntlHomePage";
 import { getMessages, isSupportedLocale, supportedLocales } from "./site-data";
 import { notFound } from "next/navigation";
