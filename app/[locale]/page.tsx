@@ -1,35 +1,27 @@
-import IntlHomePage from "../components/i18n/IntlHomePage";
-import { getMessages, isSupportedLocale, supportedLocales } from "./site-data";
-import { notFound } from "next/navigation";
+import IntlHomePage from "@/app/components/i18n/IntlHomePage";
+import IsraelHomePage from "@/app/page";
 
-export function generateStaticParams() {
-  return supportedLocales.map((locale) => ({ locale }));
-}
+type Props = {
+  params: Promise<{
+    locale: string;
+  }>;
+};
 
-export default async function LocaleHomePage({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}) {
+export default async function LocalePage({ params }: Props) {
   const { locale } = await params;
+  const normalizedLocale = locale?.toLowerCase();
 
-  if (!isSupportedLocale(locale)) {
-    notFound();
+  if (normalizedLocale === "he" || normalizedLocale === "iw") {
+    return <IsraelHomePage />;
   }
 
-  return <IntlHomePage locale={locale} />;
-}
+  if (
+    normalizedLocale === "en" ||
+    normalizedLocale === "fr" ||
+    normalizedLocale === "es"
+  ) {
+    return <IntlHomePage locale={normalizedLocale as any} />;
+  }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}) {
-  const { locale } = await params;
-  const t = getMessages(locale);
-
-  return {
-    title: `KesherMatch - ${t.brandTagline}`,
-    description: t.home.description,
-  };
+  return <IsraelHomePage />;
 }
