@@ -1,0 +1,13 @@
+<svg width="1200" height="420" viewBox="0 0 1200 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="420" rx="36" fill="#5A102A"/>
+  <g transform="translate(900,54)">
+    <g stroke="#D8B07A" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M150 224L69 143C43 117 43 75 69 49C95 23 137 23 163 49L150 62L137 49C111 23 69 23 43 49C17 75 17 117 43 143L150 250L257 143C283 117 283 75 257 49C231 23 189 23 163 49"/>
+      <path d="M114 91C129 76 153 76 168 91L200 123C211 134 211 151 200 162L150 212L100 162C89 151 89 134 100 123L132 91"/>
+      <path d="M87 74L213 200"/>
+      <path d="M150 97C124 119 115 151 122 180C126 199 136 216 150 231C164 216 174 199 178 180C185 151 176 119 150 97Z"/>
+    </g>
+  </g>
+  <text x="830" y="180" text-anchor="end" direction="rtl" unicode-bidi="plaintext" fill="white" font-size="96" font-weight="700" font-family="Rubik, Assistant, Arial, sans-serif">קשר</text>
+  <text x="830" y="244" text-anchor="end" direction="rtl" unicode-bidi="plaintext" fill="#D8B07A" font-size="28" font-weight="500" font-family="Rubik, Assistant, Arial, sans-serif">שידוכים להורים ולמשפחות שחושבים רחוק</text>
+</svg>

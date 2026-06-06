@@ -1,6 +1,4 @@
-import Link from "next/link";
 import { LucideIcon } from "lucide-react";
-import KesherLogo from "./KesherLogo";
 import PrimaryButton from "./PrimaryButton";
 import FeatureCard from "./FeatureCard";
 
@@ -26,7 +24,6 @@ type LandingPageShellProps = {
 };
 
 export default function LandingPageShell({
-  active,
   badge,
   title,
   titleGradient,
@@ -39,67 +36,24 @@ export default function LandingPageShell({
   faqs,
 }: LandingPageShellProps) {
   return (
-    <div
+    <main
       dir="rtl"
-      className="min-h-screen bg-[radial-gradient(circle_at_top_right,_rgba(251,146,60,0.12),_transparent_28%),radial-gradient(circle_at_top_left,_rgba(14,165,233,0.10),_transparent_25%),linear-gradient(to_bottom,_#fffaf7,_#ffffff,_#f8fafc)] text-stone-900"
+      className="min-h-screen bg-[#f6f1ea] text-right text-[#2f241f]"
     >
-      <header className="sticky top-0 z-30 border-b border-white/70 bg-white/75 backdrop-blur-2xl">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-          <Link href="/">
-            <KesherLogo tagline="Heart, connection, family, progress" />
-          </Link>
-
-          <nav className="hidden items-center gap-6 text-sm font-medium md:flex">
-            <Link
-              href="/traditional"
-              className={
-                active === "traditional"
-                  ? "text-orange-600"
-                  : "transition hover:text-orange-600"
-              }
-            >
-              מסורתיים
-            </Link>
-
-            <Link
-              href="/secular"
-              className={
-                active === "secular"
-                  ? "text-sky-600"
-                  : "transition hover:text-sky-600"
-              }
-            >
-              חילוניים
-            </Link>
-
-            <Link
-              href="/mixed"
-              className={
-                active === "mixed"
-                  ? "text-rose-600"
-                  : "transition hover:text-rose-600"
-              }
-            >
-              מעורב
-            </Link>
-          </nav>
-        </div>
-      </header>
-
-      <main className="mx-auto max-w-7xl px-6 py-10 md:py-16">
+      <div className="mx-auto max-w-7xl px-4 py-14 md:px-6 lg:px-8 lg:py-20">
         <section
-          className={`relative overflow-hidden rounded-[3rem] border border-white/80 bg-gradient-to-br ${heroGradient} p-10 shadow-[0_30px_80px_rgba(15,23,42,0.08)] md:p-16`}
+          className={`relative overflow-hidden rounded-[3rem] border border-[#e6d8cb] bg-gradient-to-br ${heroGradient} p-8 shadow-[0_28px_70px_rgba(61,42,32,0.08)] md:p-14 lg:p-16`}
         >
-          <div className="absolute -left-10 top-10 h-44 w-44 rounded-full bg-sky-200/35 blur-3xl" />
-          <div className="absolute bottom-0 right-0 h-56 w-56 rounded-full bg-orange-200/35 blur-3xl" />
+          <div className="absolute -left-10 top-10 h-44 w-44 rounded-full bg-white/45 blur-3xl" />
+          <div className="absolute bottom-0 right-0 h-56 w-56 rounded-full bg-[#d9b98c]/25 blur-3xl" />
 
-          <div className="relative grid gap-12 md:grid-cols-[1.05fr_0.95fr] md:items-center">
+          <div className="relative grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
             <div>
-              <div className="mb-5 inline-flex rounded-full border border-white/70 bg-white/80 px-4 py-2 text-sm font-semibold text-stone-700 shadow-sm">
+              <div className="mb-6 inline-flex rounded-full border border-[#e2d1c2] bg-white/90 px-5 py-2.5 text-base font-bold text-[#5c4b41] shadow-sm">
                 {badge}
               </div>
 
-              <h1 className="text-5xl font-black leading-[1.05] md:text-7xl">
+              <h1 className="max-w-4xl font-heading text-4xl font-extrabold leading-[1.12] text-[#2a1f1a] md:text-5xl lg:text-6xl">
                 <span
                   className={`bg-gradient-to-r ${titleGradient} bg-clip-text text-transparent`}
                 >
@@ -107,7 +61,7 @@ export default function LandingPageShell({
                 </span>
               </h1>
 
-              <p className="mt-6 max-w-3xl text-lg leading-8 text-stone-700 md:text-xl">
+              <p className="mt-6 max-w-3xl font-body text-xl leading-10 text-[#57473e]">
                 {description}
               </p>
 
@@ -132,36 +86,44 @@ export default function LandingPageShell({
           </div>
         </section>
 
-        <section className="mt-20 grid gap-6 md:grid-cols-3">
+        <section className="mt-16 grid gap-6 md:grid-cols-3">
           {columns.map((item) => (
             <div
               key={item.title}
-              className="rounded-[2rem] bg-white/85 p-6 shadow-lg shadow-stone-200/60 ring-1 ring-white/80 transition duration-300 hover:-translate-y-1 hover:shadow-2xl"
+              className="rounded-[2rem] border border-[#e6d8cb] bg-white p-7 shadow-[0_14px_38px_rgba(61,42,32,0.06)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(61,42,32,0.10)]"
             >
-              <h3 className="text-2xl font-bold text-stone-900">{item.title}</h3>
-              <p className="mt-3 leading-8 text-stone-600">{item.text}</p>
+              <h3 className="font-heading text-2xl font-bold text-[#2f241f]">
+                {item.title}
+              </h3>
+              <p className="mt-4 font-body text-base leading-8 text-[#625249]">
+                {item.text}
+              </p>
             </div>
           ))}
         </section>
 
-        <section className="mt-20 rounded-[2rem] bg-white p-8 shadow-[0_24px_70px_rgba(15,23,42,0.08)] ring-1 ring-stone-100 md:p-10">
-          <h2 className="text-3xl font-black md:text-4xl">שאלות נפוצות</h2>
+        <section className="mt-16 rounded-[2rem] border border-[#e6d8cb] bg-white p-8 shadow-[0_18px_50px_rgba(61,42,32,0.06)] md:p-10">
+          <h2 className="font-heading text-3xl font-extrabold text-[#2f241f] md:text-4xl">
+            שאלות נפוצות
+          </h2>
 
           <div className="mt-8 space-y-4">
             {faqs.map((item) => (
               <details
                 key={item.q}
-                className="group rounded-[1.5rem] border border-stone-200 bg-stone-50 p-6 transition hover:bg-white"
+                className="group rounded-[1.5rem] border border-[#e6d8cb] bg-[#fcf8f4] p-6 transition hover:bg-white"
               >
-                <summary className="cursor-pointer text-lg font-bold text-stone-800">
+                <summary className="cursor-pointer font-heading text-xl font-bold text-[#2f241f]">
                   {item.q}
                 </summary>
-                <p className="mt-4 leading-8 text-stone-600">{item.a}</p>
+                <p className="mt-4 font-body text-base leading-8 text-[#625249]">
+                  {item.a}
+                </p>
               </details>
             ))}
           </div>
         </section>
-      </main>
-    </div>
+      </div>
+    </main>
   );
 }

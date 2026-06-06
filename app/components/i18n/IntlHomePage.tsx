@@ -158,7 +158,7 @@ export default function IntlHomePage({ locale }: { locale: Locale }) {
               </Link>
             </nav>
 
-            <LocaleSwitcher locale={locale} />
+            <LocaleSwitcher currentLocale={locale} />
           </div>
         </div>
       </header>
